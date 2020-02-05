@@ -14,30 +14,39 @@ public class BugZap extends PApplet
 
     float playerx = 500;
     float playery = 950;
-    float playerwidth = 60;
+	float playerwidth = 60;
+	boolean playerLazer;
 
     void drawPlayer(float x, float y, float w){
         float h = w/2;
         stroke(255);
-		fill(0);
-        rect(playerx, playery, playerwidth, h);
-    }
+		fill(255);
+		triangle(playerx, playery-h, playerx-w/3, playery-h/2, playerx+w/3, playery-h/2); 
+		rect(playerx-w/2, playery-h/2, playerwidth, h);
+
+		if (playerLazer == true) {
+			line(playerx, playery-w/2, playerx, 1000-playery);
+			playerLazer = false;
+		}
+		
+		
+	}
 
 	public void draw() {
 		background(0);
-        drawPlayer(playerx, playery, playerwidth);
+		drawPlayer(playerx, playery, playerwidth);
 	}	
     
     public void keyPressed()
 	{
-		if (keyCode == LEFT)
+		if (keyCode == LEFT || key == 'a')
 		{
             if ( playerx -25 >= 0) {
                 playerx = playerx - 25;
             }
 			System.out.println("Left arrow pressed");
 		}
-		if (keyCode == RIGHT)
+		if (keyCode == RIGHT || key == 'd')
 		{
             if (playerx +25 <= 1000 ) {
                 playerx = playerx + 25;
@@ -46,6 +55,8 @@ public class BugZap extends PApplet
 		}
 		if (key == ' ')
 		{
+			playerLazer = true;
+			
 			System.out.println("SPACE key pressed");
 		}
 	}	
