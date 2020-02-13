@@ -110,24 +110,30 @@ public class BugZap extends PApplet
 		if (key == ' ')
 		{
 			line(playerX, playerY, playerX, bugY);
+			if (bugX< playerX + halfBugWidth && bugX > playerX-halfBugWidth ) {
+				resetBug();
+			}
 		}
 	}	
 
 	void moveBug()
 	{
-		if ((frameCount % 60) == 0)
+		if ((frameCount % 1) == 0)
 		{
-			bugX += random(-5, +5);
+			bugX += random(-1,+1);
 			if (bugX < halfBugWidth )
 			{
-			  bugX = halfBugWidth;
+			  bugX = width-halfBugWidth;
 			}
 			
 			if (bugX + halfBugWidth > width)
 			{
-			  bugX = width - halfBugWidth;
+			  bugX =  halfBugWidth;
 			}
-			bugY ++;
+			
+			if ((frameCount % 10) == 0) {	
+				bugY ++;
+			}
 		}
 	}
 
