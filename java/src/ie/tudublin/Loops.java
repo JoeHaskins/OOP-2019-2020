@@ -23,27 +23,23 @@ public class Loops extends PApplet
 
 	public void draw()
 	{	
-		//first();
+		first();
 		//seconddraw();
 		//third();
 		//fourth();
-		fifth();
+		//fifth();
 	}
 
 	public void first(){
 		background(255);	
-		int x =0;
-		int y = 0;
-		while ( y < 500) {
+		int numlines = 100;
+		float gap = width/(float)numlines;
+		for ( int i = 0; i <= numlines; i++) {
 			stroke(0);
-			line(x,y ,500-x, 500-y);
+			float x = i* gap;
+			line(x,0 ,width-x, height);
+			line(0,x ,width, height-x);
 			
-			if (x == 500) {
-				y= y+20;
-			}
-			if (x != 500) {
-				x=x+20;
-			}
 		}
 	}
 
@@ -92,7 +88,7 @@ public class Loops extends PApplet
 		int i = -5;
 		background(0);
 		stroke(124,10000,1000);
-		while ( y<500) {
+		while ( y<height) {
 			line(25,y,475,y);
 			line(x,25,x,475);
 			
