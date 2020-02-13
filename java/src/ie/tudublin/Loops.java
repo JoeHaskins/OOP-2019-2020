@@ -23,11 +23,11 @@ public class Loops extends PApplet
 
 	public void draw()
 	{	
-		first();
+		//first();
 		//seconddraw();
 		//third();
 		//fourth();
-		//fifth();
+		fifth();
 	}
 
 	public void first(){
@@ -70,20 +70,22 @@ public class Loops extends PApplet
 
 	public void fourth() {
 		background(150);	
-		int x =25;
-		int y = 250;
+		int numcircles = 5;
+		int circlegap = width/(numcircles*2);
+		int x =circlegap;
+		int y = height/2;
 		int h = 0;
-		while ( x<500) {
+		while ( x<width) {
 			stroke(0);
-			fill(h,10000 ,1000);
-			ellipse(x, y, 50, 50); // cx, cy, w, h
+			fill(h,255,255);
+			ellipse(x, y, circlegap, circlegap); // cx, cy, w, h
 			h +=20;
-			x += 50;
+			x += circlegap;
 		}
 	}
 
 	public void fifth() {
-		int x =25;
+		/*int x =25;
 		int y = 25;
 		int i = -5;
 		background(0);
@@ -99,7 +101,26 @@ public class Loops extends PApplet
 			fill(124, 10000, 1000);
 			i++;
 			x += 45;
-			y += 45;
+			y += 45;*/
+
+			float gap = width * 0.1f;
+			float halfgap = gap/2.0f;
+			background(0);
+			colorMode(RGB);
+			stroke(0,255,0);
+			textAlign(CENTER, CENTER);
+			for (int i = -5; i < 5; i++) {
+				stroke(0,255,0);
+				float x = map(i,-5,5,gap,width-gap);
+				line(x, gap, x, height- gap);
+				line(gap, x, width-gap, x);
+				fill(255);
+				text(i,x,halfgap);
+				text(i, halfgap, x);
+			}
+
+
 		}
+		
 }
-}
+
