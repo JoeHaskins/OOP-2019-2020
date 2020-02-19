@@ -76,6 +76,40 @@ public class ArraysExample extends PApplet
 		}
 	}
 
+	void drawLineGraph(){
+		float gradiant = 17; // value -2 == size of gradiant in 10 mm
+		float w = width / (float) (rainFall.length +1);
+		float x = w;
+		float y = height / (float) gradiant;
+		float ymarker = y;
+
+		stroke(0, 0, 100);
+		line(x, height - y, x, y);
+		line(width - x, height - y, x, height - y);
+		for (int j = 0; j < gradiant; j++) {
+			line(x, ymarker, x-(w/4), ymarker);
+			text(j*10, x-(w/1.25f), height -ymarker);
+			ymarker += y;
+		}
+		ymarker = height- y;
+		for(int i = 0 ; i < rainFall.length ; i ++)
+		{
+			stroke(0, 0, 100);
+			line(x, ymarker, x, ymarker+(y/4));
+			text(months[i], x-(w/4), ymarker+(y/1.25f));
+			
+			
+			if (i < 11) {
+				float ypos1 = height -(y + (y* ((float) rainFall[i])/10));
+				float ypos2 = height -(y + (y* ((float) rainFall[i+1])/10));
+			
+				stroke(184, 200, 200);
+				line(x, ypos1, (x+w), ypos2);
+			}
+			x = x + w;
+		}
+	}
+
 	public void keyPressed()
 	{
 		if (key == ' ')
@@ -86,9 +120,10 @@ public class ArraysExample extends PApplet
 
 	public void draw()
 	{	
-		background(0);		
+		background(1);		
 		colorMode(HSB);	
 
-		drawBarChart();
+		//drawBarChart();
+		//drawLineGraph();
 	}
 }
