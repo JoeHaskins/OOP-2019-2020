@@ -80,10 +80,10 @@ public class Main
     
     public static void main(String[] arg)
     {
-        /*
+        
         Main main = new Main();
         main.helloArrays();      
-        */
+        
         
         PitchSpeller ps = new PitchSpeller();
         System.out.println(ps.spell(330));
