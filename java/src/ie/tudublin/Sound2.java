@@ -31,6 +31,17 @@ public class Sound2 extends PApplet
 		as.trigger();
 	}
 	
+	public int countZeroCrossings() {
+		int crossings;
+		for (int i = 0; i < platformNames.length; i++) {
+		
+		crossings = (int) abs(1*(as.left.get(i)/frameSize));
+			
+		}
+
+		return crossings;
+	}
+	
 	public void draw()
 	{	
 		background(0);		
