@@ -10,11 +10,22 @@ public class Sound2 extends PApplet
 
 	int frameSize = 1024;
 
+	float frameforsecond = 44100/ (float) frameSize;
+
 	public void settings()
 	{
 		size(1024, 500);
 	}
 
+	public int countZeroCrossings(){
+		int count =0;
+		for (int i = 1; i < as.bufferSize(); i++) {
+			if (as.left.get(i-1)>= 0 && as.left.get(i) <= 0) {
+				count++;
+			}
+		}
+		return count;
+	}
 
 	public void setup() 
 	{
@@ -59,5 +70,18 @@ public class Sound2 extends PApplet
 		);
 		ellipse(400 , cy,w, w);
 		ellipse(600 , cy,lerpedw, lerpedw);		
+
+		int count = countZeroCrossings();
+		float freq = count * frameforsecond;
+
+		textSize(22);
+		text(freq, 100, 50);
+		
+		float gap = 2*PIE/ as.bufferSize();
+		float x = width/2;
+		float y = freq;
+		for (int i = 0; i < as.bufferSize(); i++) {
+			line(width/2, height/2, x, y);
+		}
 }
 }
